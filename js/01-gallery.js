@@ -21,6 +21,7 @@ function makeImagesMarkup(galleryItems) {
     })
       .join("");
 };
+// --------------------------
 galleryEl.addEventListener('click', imagesHandler);
 
 function imagesHandler(event) {
@@ -28,12 +29,43 @@ function imagesHandler(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   };
+
   const modalImage = event.target.getAttribute('data-source');
-  const instance = basicLightbox.create(`
+   const instance = basicLightbox.create(`
       <img src="${modalImage}" width="800" height="600">
 `);
   instance.show();
+
+  window.addEventListener('keydown', onClose);
+  function onClose(event) {
+    if (event.code === "Escape") {
+      instance.close();
+      console.log(event)
+    };
+  };
 };
+
+
+
+
+
+
+// galleryEl.addEventListener('click', imagesHandler);
+
+// function imagesHandler(event) {
+//   event.preventDefault();
+//   if (event.target.nodeName !== "IMG") {
+//     return;
+//   };
+//   const modalImage = event.target.getAttribute('data-source');
+//    const instance = basicLightbox.create(`
+//       <img src="${modalImage}" width="800" height="600">
+// `);
+//   instance.show();
+// };
+
+
+
 
 
 
